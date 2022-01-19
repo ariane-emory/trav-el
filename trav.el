@@ -57,5 +57,5 @@
   "Keymap used in trav-mode.")
 
 (define-minor-mode trav-mode
-  "A mode with useful tools for Traveller and related RPGs."
-  :lighter "✹")
+  "A mode with useful tools for Traveller-like RPGs such as Cepheus Engine."
+  :lighter " ✹")
