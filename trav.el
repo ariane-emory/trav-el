@@ -86,7 +86,7 @@
 (defvar trav-mode-map
   (let ((trav-mode-map (make-sparse-keymap)))
     (define-key trav-mode-map
-      (kbd "C-c C-u C- 'describe-uwp-at-point)
+      (kbd "C-c C-u C-d") 'describe-uwp-at-point)
     (define-key trav-mode-map
       (kbd "C-c C-u C-i") 'insert-new-uwp)
     trav-mode-map)
@@ -95,6 +95,7 @@
 (define-minor-mode trav-mode
   "A mode with useful tools for Traveller-like RPGs such as Cepheus Engine."
   :lighter " ✹")
+      
 ;;; trav.el ends here
 
 ;; Local Variables:
