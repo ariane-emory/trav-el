@@ -35,14 +35,16 @@
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'hydrographics
-      (if (member atmosphere '(0 1))
-        0 (restrict 0 #xF
-            (+ hydrographics
-              (cond
-                ((member atmosphere
-                   '(0 1 #xA #xB #xC)) -4)
-                ((eq atmosphere #xE) -2)
-                (t 0)))) 0))))
+      ;; (if (or (= atmosphere 0)
+      ;;       (= atmosphere 1))
+      ;;        0
+      (restrict 0 #xF
+        (+ hydrographics
+          (cond
+            ((member atmosphere
+               '(0 1 #xA #xB #xC)) -4)
+            ((eq atmosphere #xE) -2)
+            (t 0)))) 0)));;)
 
 (cl-defmethod uwp--init-population ((obj uwp))
   "Initialize a UWP's population score as per the Cepheus SRD's rules."
