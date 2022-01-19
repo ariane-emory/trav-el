@@ -84,20 +84,25 @@
     (set-slot-value obj 'starport
       (uwp--calc-starport starport population))))
 
+(cl-defmethod uwp--calc-tech-level
+  (tech-level-roll starport size atmosphere)
+  (restrict 0 #xF
+    (+ tech-level-roll
+      (cond
+        ((= starport #xA) 6)
+        ((= starport #xB) 4)
+        ((= starport #xC) 2)
+        ((= starport #xD) 0)
+        ((= starport #xE) 0)
+        ((= starport #xE) -4)
+        (t 0)))))
+
 (cl-defmethod uwp--init-tech-level ((obj uwp))
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'tech-level
-      (restrict 0 #xF
-        (+ tech-level
-          (cond
-            ((= starport #xA) 6)
-            ((= starport #xB) 4)
-            ((= starport #xC) 2)
-            ((= starport #xD) 0)
-            ((= starport #xE) 0)
-            ((= starport #xE) -4)
-            (t 0)))))))
+      (uwp--calc-tech-level
+        tech-level starport size atmosphere))))
 
 (cl-defmethod init ((obj uwp))
   (uwp--copy-raw-rolls obj)
