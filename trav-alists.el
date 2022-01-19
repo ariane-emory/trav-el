@@ -176,20 +176,30 @@
 
 (setq uwp--tech-level-minimums-list
   '(
-     (atmosphere . (((0 1 2 3 10 11 12) . 7)
+     (atmosphere . ( ((0 1 2 3 10 11 12) . 7)
                      ((13 14) . 7)
                      ((4 7 9) . 5)))
 
-     (hydrographics . (((0 10) . 4)
+     (hydrographics . ( ((0 10) . 4)
                         ((10) . 4)))
      
-     (population . ((6 7 8 9 10 11 12) . 4))
+     (population . ( (6 7 8 9 10 11 12) . 4))
      ))
 
 
-(let ((slot-symbol 'atmosphere)
-       (slot-value 11))
-  (-filter (lambda (x) t) (alist-get slot-symbol uwp--tech-level-minimums-list)))
+(defun uwp--get-tech-level-minimum (slot-symbol slot-value)
+  (let* ((slot-symbol slot-symbol)
+          (slot-value slot-value)
+          (matches (-filter (lambda (x)
+                              (member slot-value (car x)))
+                     (alist-get slot-symbol uwp--tech-level-minimums-list))))
+    (when matches
+      (cdar matches))))
+
+(uwp--get-tech-level-minimum 'atmosphere 11)
+
+
+
 
 (provide 'trav-alists)
 
