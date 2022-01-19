@@ -175,13 +175,20 @@
      (#xF . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government .  0)))))
 
 (setq uwp--tech-level-minimums-list
-  '( ((hydrographics 0 10) . 4)
-     ((population 6 7 8 9 10 11 12) . 4)
-     ((atmosphere 4 7 9) . 5)
-     ((atmosphere 0 1 2 3 10 11 12) . 7)
-     ((atmosphere 13 14) . 7)
-     ((hydrographics 10) . 4)))
+  '(
+     (atmosphere . (((0 1 2 3 10 11 12) . 7)
+                     ((13 14) . 7)
+                     ((4 7 9) . 5)))
 
+     (hydrographics . (((0 10) . 4)
+                        ((10) . 4)))
+     
+     (population . ((6 7 8 9 10 11 12) . 4))
+     ))
+
+
+(let ((slot-symbol 'atmosphere))
+  (alist-get slot-symbol uwp--tech-level-minimums-list))
 
 (provide 'trav-alists)
 
