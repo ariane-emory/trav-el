@@ -273,17 +273,14 @@
 
 (cl-defmethod pretty-format ((obj uwp))
   (concat
-    "\n"
-    ;; ";; " (pp obj) 
-    ";; " (as-code obj) ": \n"
-    ";; " (describe-starport obj) "\n"
-    ";; " (describe-size obj) "\n"
-    ";; " (describe-atmosphere obj) "\n"
-    ";; " (describe-hydrographics obj) "\n"
-    ";; " (describe-population obj) "\n"
-    ";; " (describe-government obj) "\n"
-    ";; " (describe-law-level obj) "\n"
-    ";; " (describe-tech-level obj) "\n"))
+    (describe-starport obj) "\n"
+    (describe-size obj) "\n"
+    (describe-atmosphere obj) "\n"
+    (describe-hydrographics obj) "\n"
+    (describe-population obj) "\n"
+    (describe-government obj) "\n"
+    (describe-law-level obj) "\n"
+    (describe-tech-level obj) "\n"))
 
 (setq-local debug-on-error 1)
 
@@ -433,11 +430,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun insert-new-uwp ()
+(defun insert-new-uwp-and-description ()
   (interactive)
-  (insert (pretty-format (create-uwp))))
+  (let ((u (create-uwp)))
+    (insert
+      (as-code u) ":\n"
+      (pretty-format u))))
 
 (global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
-
-
-
