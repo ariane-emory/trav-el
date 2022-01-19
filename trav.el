@@ -10,24 +10,11 @@
 
 (-each
   '( trav-alists
-     trav-helpers)
+     trav-helpers
+     trav-roll)
   (lambda (feat)
     (setq features (remove feat features))
     (require feat)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Dice functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defmacro roll (xdy)
-  "Roll num side-sided dice and return the total."
-  (let* ((parts (split-string (symbol-name xdy) "d"))
-          (num (string-to-number (car parts)))
-          (sides (string-to-number (cadr parts))))
-    `(let* ((total 0))
-       (dotimes (count ,num)
-         (setq total (+ total 1 (random ,sides))))
-       total)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Class
