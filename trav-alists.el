@@ -187,8 +187,9 @@
      ))
 
 
-(let ((slot-symbol 'atmosphere))
-  (alist-get slot-symbol uwp--tech-level-minimums-list))
+(let ((slot-symbol 'atmosphere)
+       (slot-value 11))
+  (-filter (lambda (x) t) (alist-get slot-symbol uwp--tech-level-minimums-list)))
 
 (provide 'trav-alists)
 
