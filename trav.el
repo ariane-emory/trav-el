@@ -280,7 +280,7 @@
     (describe-population obj) "\n"
     (describe-government obj) "\n"
     (describe-law-level obj) "\n"
-    (describe-tech-level obj) "\n"))
+    (describe-tech-level obj)))
 
 (setq-local debug-on-error 1)
 
@@ -431,7 +431,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun insert-new-uwp (&optional describe)
-  (interactive)
+  (interactive "P")
   (let ((u (create-uwp)))
     (insert (as-code u))
     (when describe 
