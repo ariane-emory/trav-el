@@ -14,7 +14,7 @@
   (-each alist
     (lambda (pair)
       (set-slot-value obj
-        (car pair) (cdr (assoc (car pair) alist)))
+        (car pair) (alist-get (car pair) alist))
       (set-slot-value obj
         (join-symbols (list (car pair) 'roll)) 0))))
 
