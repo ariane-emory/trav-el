@@ -85,27 +85,24 @@
       (uwp--calc-starport starport population))))
 
 (cl-defmethod uwp--calc-tech-level
-  (tech-level-roll starport size atmosphere)
+  (tech-level-roll starport size atmosphere hydrographics population government)
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
           (get-mod (lambda (slot-symbol slot-value)
                      (cdr (assoc slot-symbol
                             (cdr (assoc slot-value
                                    tl-mods))))))
-          (starport-mod (cdr (assoc 'starport
-                               (cdr (assoc starport
-                                      tl-mods)))))
-          (size-mod (cdr (assoc 'size
-                           (cdr (assoc size
-                                  tl-mods)))))
-          (atmosphere-mod (cdr (assoc 'atmosphere
-                                 (cdr (assoc atmosphere
-                                        tl-mods))))))
-    ;; (+ tech-level-roll starport-mod
-    ;;   size-mod atmosphere-mod)
-    (list (+ tech-level-roll starport-mod
-            size-mod atmosphere-mod)
-      `(+ ,tech-level-roll ,starport-mod
-         ,size-mod ,atmosphere-mod))
+          (starport-mod (funcall get-mod 'starport starport))
+          (size-mod (funcall get-mod 'size size))
+          (atmosphere-mod (funcall get-mod 'atmosphere atmosphere))
+          (hydrographics-mod (funcall get-mod 'hydrographics hydrographics))
+          (population-mod (funcall get-mod 'population population))
+          (government-mod (funcall get-mod 'government government)))
+    (+ tech-level-roll starport-mod size-mod atmosphere-mod
+      hydrographics-mod population-mod government-mod)
+    ;; (list (+ tech-level-roll starport-mod size-mod atmosphere-mod
+    ;;         hydrographics-mod population-mod government-mod)
+    ;;   `(+ ,tech-level-roll ,starport-mod ,size-mod ,atmosphere-mod
+    ;;      ,hydrographics-mod ,population-mod ,government-mod))
     ))
 
 (cl-defmethod uwp--init-tech-level ((obj uwp))
