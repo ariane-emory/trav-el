@@ -35,33 +35,32 @@
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'hydrographics
-      ;; (if (or (= atmosphere 0)
-      ;;       (= atmosphere 1))
-      ;;        0
-      (restrict 0 #xF
-        (+ hydrographics
-          (cond
-            ((member atmosphere
-               '(0 1 #xA #xB #xC)) -4)
-            ((eq atmosphere #xE) -2)
-            (t 0)))) 0)));;)
+      (if (member hydrographics '(0 1))
+        0
+        (restrict 0 #xF
+          (+ hydrographics
+            (cond
+              ((member atmosphere
+                 '(#xA #xB #xC)) -4)
+              ((eq atmosphere #xE) -2)
+              (t 0))))))))
 
-(cl-defmethod uwp--init-population ((obj uwp))
-  "Initialize a UWP's population score as per the Cepheus SRD's rules."
-  (with-slots (starport size atmosphere hydrographics population
-                government law-level tech-level) obj
-    (set-slot-value obj 'population
-      (restrict 0 #xF
-        (+ population
-          (if (< size  2) -1 0)
-          (cond
-            ((> atmosphere #x9) -2)
-            ((= atmosphere #x6) +3)
-            ((= atmosphere #x5) +1)
-            ((= atmosphere #x8) +1)
-            (t 0))
-          (if (and (eq hydrographics 0)
-                (< atmosphere 3)) -2 0))))))
+  (cl-defmethod uwp--init-population ((obj uwp))
+    "Initialize a UWP's population score as per the Cepheus SRD's rules."
+    (with-slots (starport size atmosphere hydrographics population
+                  government law-level tech-level) obj
+      (set-slot-value obj 'population
+        (restrict 0 #xF
+          (+ population
+            (if (< size  2) -1 0)
+            (cond
+              ((> atmosphere #x9) -2)
+              ((= atmosphere #x6) +3)
+              ((= atmosphere #x5) +1)
+              ((= atmosphere #x8) +1)
+              (t 0))
+            (if (and (eq hydrographics 0)
+                  (< atmosphere 3)) -2 0))))))
 
 (cl-defmethod uwp--init-government ((obj uwp))
   "Initialize a UWP's government score as per the Cepheus SRD's rules."
