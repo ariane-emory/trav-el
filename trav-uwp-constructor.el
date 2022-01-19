@@ -73,10 +73,10 @@
             (+ -7 government))))))
 
 (defun uwp--calc-starport (starport-roll population)
-  (cdr (assoc
-         (restrict 2 #xB
-           (+ population (- starport-roll 7)))
-         uwp--starport-values-alist)))
+  (alist-get
+    (restrict 2 #xB
+      (+ population (- starport-roll 7)))
+    uwp--starport-values-alist))
 
 (cl-defmethod uwp--init-starport ((obj uwp))
   (with-slots (starport size atmosphere hydrographics population
@@ -88,9 +88,9 @@
   (tech-level-roll starport size atmosphere hydrographics population government)
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
           (get-mod (lambda (slot-symbol slot-value)
-                     (cdr (assoc slot-symbol
-                            (cdr (assoc slot-value
-                                   tl-mods))))))
+                     (alist-get slot-symbol
+                       (cdr (assoc slot-value
+                              tl-mods)))))
           (starport-mod (funcall get-mod 'starport starport))
           (size-mod (funcall get-mod 'size size))
           (atmosphere-mod (funcall get-mod 'atmosphere atmosphere))
