@@ -12,6 +12,7 @@
 (setq features (remove 'trav-helpers features))
 
 (require 'trav-alists)
+(require 'trav-helpers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dice functions
@@ -442,7 +443,8 @@
 (pretty-format (init (uwp)))
 
 (setq code "A9876543")
-(uwp--zip-numbers-with-slot-names (code-to-number-list code))
+(uwp--zip-numbers-with-slot-names
+  (uwp--code-to-number-list code))
 
 (setq u (parse-uwp code)) 
 (as-code u)
