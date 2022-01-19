@@ -14,8 +14,8 @@
   "Print a UWP object."
   (string-join
     (cons
-      (cdr (assoc (slot-value obj 'starport)
-             uwp--starport-descriptions-alist))
+      (alist-get (slot-value obj 'starport)
+        uwp--starport-descriptions-alist)
       (cdr (map-slots obj
              (lambda (slot-name)
                (t-format (slot-value obj slot-name))))))))
