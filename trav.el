@@ -20,6 +20,7 @@
      trav-uwp-pretty-format
      trav-uwp-other-methods)
   (lambda (feat)
+    "Remove each feature from features before requiring it so that evaluating this buffer will re-load every file in the package."
     (setq features (remove feat features))
     (require feat)))
 
@@ -42,12 +43,9 @@
   (setq u (parse-uwp (thing-at-point 'word 'no-properties)))
   (end-of-line)
   (newline)
-  ;; (unless (looking-at "\s*$")
-  ;;   (forward-word))
   (insert (pretty-format u)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 (defvar trav-mode-map
   (let ((trav-mode-map (make-sparse-keymap)))

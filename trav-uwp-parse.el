@@ -10,7 +10,8 @@
           (string-to-number (char-to-string char) 16))
     string))
 
-(cl-defmethod set-from-alist ((obj uwp) alist)
+(cl-defmethod uwp--set-slots-from-alist ((obj uwp) alist)
+  "Set a UWP objects slots from an alist."
   (-each alist
     (lambda (pair)
       (set-slot-value obj
@@ -19,6 +20,7 @@
         (join-symbols (list (car pair) 'roll)) 0))))
 
 (defun parse-uwp (string)
+  "Parse a string to create a UWP object "
   (let* ( (obj (uwp))
           (numbers (uwp--code-to-number-list string)) 
           (alist (uwp--zip-numbers-with-slot-names
@@ -26,7 +28,7 @@
                      (cdr (assoc (substring string 0 1)
                             uwp--starport-values-reverse-alist))
                      (cdr numbers)))))
-    (set-from-alist obj alist)
+    (uwp--set-slots-from-alist obj alist)
     obj))
 
 (provide 'trav-uwp-parse)

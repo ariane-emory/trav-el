@@ -157,34 +157,30 @@
      (#xF . #xF)))
 
 (setq uwp--tech-level-modifiers-alist
-  '( (#x0 . ((starport . -4) (size . 2) (atmosphere . 1) (hydrographics . 1) (population . 0) (government .  1)))
-     (#x1 . ((starport .  0) (size . 2) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
-     (#x2 . ((starport .  0) (size . 1) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
-     (#x3 . ((starport .  0) (size . 1) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
-     (#x4 . ((starport .  0) (size . 1) (atmosphere . 0) (hydrographics . 0) (population . 1) (government .  0)))
-     (#x5 . ((starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 1) (government .  1)))
-     (#x6 . ((starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  0)))
-     (#x7 . ((starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  2)))
-     (#x8 . ((starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  0)))
-     (#x9 . ((starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 1) (population . 1) (government .  0)))
-     (#xA . ((starport .  6) (size . 0) (atmosphere . 1) (hydrographics . 2) (population . 2) (government .  0)))
-     (#xB . ((starport .  4) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 3) (government .  0)))
-     (#xC . ((starport .  2) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 4) (government .  0)))
-     (#xD . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government . -2)))
-     (#xE . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government . -2)))
-     (#xF . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government .  0)))))
+  '( (#x0 . ( (starport . -4) (size . 2) (atmosphere . 1) (hydrographics . 1) (population . 0) (government .  1)))
+     (#x1 . ( (starport .  0) (size . 2) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
+     (#x2 . ( (starport .  0) (size . 1) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
+     (#x3 . ( (starport .  0) (size . 1) (atmosphere . 1) (hydrographics . 0) (population . 1) (government .  0)))
+     (#x4 . ( (starport .  0) (size . 1) (atmosphere . 0) (hydrographics . 0) (population . 1) (government .  0)))
+     (#x5 . ( (starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 1) (government .  1)))
+     (#x6 . ( (starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  0)))
+     (#x7 . ( (starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  2)))
+     (#x8 . ( (starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 0) (population . 0) (government .  0)))
+     (#x9 . ( (starport .  0) (size . 0) (atmosphere . 0) (hydrographics . 1) (population . 1) (government .  0)))
+     (#xA . ( (starport .  6) (size . 0) (atmosphere . 1) (hydrographics . 2) (population . 2) (government .  0)))
+     (#xB . ( (starport .  4) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 3) (government .  0)))
+     (#xC . ( (starport .  2) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 4) (government .  0)))
+     (#xD . ( (starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government . -2)))
+     (#xE . ( (starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government . -2)))
+     (#xF . ( (starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government .  0)))))
 
 (setq uwp--tech-level-minimums-list
-  '(
-     (atmosphere . ( ((0 1 2 3 10 11 12) . 7)
+  '( (atmosphere . ( ((0 1 2 3 10 11 12) . 7)
                      ((13 14) . 7)
                      ((4 7 9) . 5)))
-
      (hydrographics . ( ((0 10) . 4)
                         ((10) . 4)))
-     
-     (population . ( ((6 7 8 9 10 11 12) . 4)))
-     ))
+     (population . ( ((6 7 8 9 10 11 12) . 4)))))
 
 (provide 'trav-alists)
 

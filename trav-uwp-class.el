@@ -80,7 +80,7 @@
       :type number
       :initform (roll 1d6))
     )
-  :documentation "A class to represent a Traveller UWP.")
+  :documentation "A class to represent a Traveller-style UWP.")
 
 (setq uwp--slot-names 
   '( starport

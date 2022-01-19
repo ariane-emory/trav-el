@@ -6,12 +6,12 @@
 ;; Name makers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun uwp-slot-description-alist-name
-  (slot-name)
+(defun uwp-slot-description-alist-name (slot-name)
+  "Generate the name of the description alist for a particular slot."
   (join-symbols (list 'uwp- slot-name 'descriptions 'alist)))
 
-(defun uwp-slot-action-name
-  (action-name slot-name)
+(defun uwp-slot-action-name (action-name slot-name)
+  "Generate a method name based on an action-name and a slot-name."
   (join-symbols (list action-name slot-name)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -19,6 +19,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmacro make-slot-formatter (slot-name fun)
+  "Generate a formatting function for a UWP's slot."
   (let* ((fun-name (uwp-slot-action-name 'format slot-name))
           (alist-name (uwp-slot-description-alist-name
                         slot-name))
@@ -31,13 +32,13 @@
          (alist-get (restrict ,mmin ,mmax obj) ',alist)))))
 
 (defmacro make-slot-getter (slot-name)
+  "Generate a getter method for a UWP's slot."
   (let ((action-name (uwp-slot-action-name 'get slot-name)))
     `(cl-defmethod ,action-name ((obj uwp))
        (slot-value obj ',slot-name))))
 
-(uwp-slot-action-name 'get 'size)
-
 (defmacro make-slot-describer (slot-name)
+  "Generate a describer method for a UWP's slot."
   (let* ((format-slot-action-name
            (uwp-slot-action-name  'format slot-name))
           (get-slot-action-name

@@ -7,6 +7,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (cl-defmethod uwp--copy-raw-rolls ((obj uwp))
+  "Stash the original rolls in a set of shadow slots for debugging purposes."
   (mapcar
     (lambda (sn)
       (set-slot-value obj sn
@@ -15,18 +16,21 @@
     uwp--slot-names))
 
 (cl-defmethod uwp--init-size ((obj uwp))
+  "Initialize a UWP's size score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere population
                 government law-level tech-level) obj
     (set-slot-value obj 'size
       (restrict 0 #xF (- size 2)))))
 
 (cl-defmethod uwp--init-atmosphere ((obj uwp))
+  "Initialize a UWP's atmosphere score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'atmosphere
       (restrict 0 #xF (+ -7 atmosphere size)))))
 
 (cl-defmethod uwp--init-hydrographics ((obj uwp))
+  "Initialize a UWP's hydrographics score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'hydrographics
@@ -40,6 +44,7 @@
                 (t 0)))) 0))))
 
 (cl-defmethod uwp--init-population ((obj uwp))
+  "Initialize a UWP's population score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'population
@@ -56,6 +61,7 @@
                 (< atmosphere 3)) -2 0))))))
 
 (cl-defmethod uwp--init-government ((obj uwp))
+  "Initialize a UWP's government score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'government
@@ -65,6 +71,7 @@
               population))))))
 
 (cl-defmethod uwp--init-law-level ((obj uwp))
+  "Initialize a UWP's law level score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'law-level
@@ -73,18 +80,21 @@
             (+ -7 government))))))
 
 (defun uwp--calc-starport (starport-roll population)
+  "Calculate a UWP's starport score as per the Cepheus SRD's rules."
   (alist-get
     (restrict 2 #xB
       (+ population (- starport-roll 7)))
     uwp--starport-values-alist))
 
 (cl-defmethod uwp--init-starport ((obj uwp))
+  "Initialize a UWP's starport score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'starport
       (uwp--calc-starport starport population))))
 
 (defun uwp--get-tech-level-minimum (atmosphere hydrographics population)
+  "Get a planet's minimum TL based on it's other scores as per the Cepheus SRD's rules."
   (let ((f (lambda (slot-symbol slot-value)
              (let* ((slot-symbol slot-symbol)
                      (slot-value slot-value)
@@ -102,6 +112,7 @@
 
 (defun uwp--calc-tech-level
   (tech-level-roll starport size atmosphere hydrographics population government)
+  "Calculate a UWP's TL score as per the Cepheus SRD's rules."
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
           (get-mod (lambda (slot-symbol slot-value)
                      (alist-get slot-symbol
@@ -119,6 +130,7 @@
           (uwp--get-tech-level-minimum atmosphere hydrographics population)))))
 
 (cl-defmethod uwp--init-tech-level ((obj uwp))
+  "Initialize a UWP's TL score as per the Cepheus SRD's rules."
   (with-slots (starport size atmosphere hydrographics population
                 government law-level tech-level) obj
     (set-slot-value obj 'tech-level
@@ -127,6 +139,7 @@
         hydrographics population government))))
 
 (cl-defmethod init ((obj uwp))
+  "Initialize a newly created UWP and calculate it's scores as per the Cepheus SRD."
   (uwp--copy-raw-rolls obj)
   (uwp--init-size obj)
   (uwp--init-atmosphere obj)
@@ -139,6 +152,7 @@
   obj)
 
 (defun create-uwp ()
+  "Create and new UWP."
   (let ((obj (uwp)))
     (init obj)))
 

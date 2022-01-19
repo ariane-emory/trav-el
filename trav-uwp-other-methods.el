@@ -11,13 +11,14 @@
   (mapcar fun uwp--slot-names))
 
 (cl-defmethod as-code ((obj uwp))
-  "Print a UWP object."
+  "Get the UWP code of a UWP object."
   (string-join
     (cons
       (alist-get (slot-value obj 'starport)
         uwp--starport-descriptions-alist)
       (cdr (map-slots obj
              (lambda (slot-name)
-               (t-format (slot-value obj slot-name))))))))
-  
+               (upcase (format "%x"
+                         (slot-value obj slot-name)))))))))
+
 (provide 'trav-uwp-other-methods)
