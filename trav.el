@@ -56,7 +56,9 @@
     trav-mode-map)
   "Keymap used in trav-mode.")
 
-(define-minor-mode trav-mode nil)
+(define-minor-mode trav-mode
+  "A mode with useful tools for Traveller and related RPGs."
+  :lighter "✹")
 
 ;; (global-set-key (kbd "C-c C-u C-d") 'describe-uwp-at-point)
 ;; (global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
