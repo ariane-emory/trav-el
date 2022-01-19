@@ -110,7 +110,8 @@
                 government law-level tech-level) obj
     (set-slot-value obj 'tech-level
       (uwp--calc-tech-level
-        tech-level starport size atmosphere))))
+        tech-level starport size atmosphere
+        hydrographics population government))))
 
 (cl-defmethod init ((obj uwp))
   (uwp--copy-raw-rolls obj)
