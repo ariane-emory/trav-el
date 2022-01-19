@@ -42,7 +42,7 @@
   (newline)
   ;; (unless (looking-at "\s*$")
   ;;   (forward-word))
-  (pretty-format u))
+  (insert (pretty-format u)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
