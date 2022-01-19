@@ -89,8 +89,8 @@
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
           (get-mod (lambda (slot-symbol slot-value)
                      (alist-get slot-symbol
-                       (cdr (assoc slot-value
-                              tl-mods)))))
+                       (alist-get slot-value
+                         tl-mods))))
           (starport-mod (funcall get-mod 'starport starport))
           (size-mod (funcall get-mod 'size size))
           (atmosphere-mod (funcall get-mod 'atmosphere atmosphere))
