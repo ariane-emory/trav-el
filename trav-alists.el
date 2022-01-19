@@ -183,23 +183,27 @@
      (hydrographics . ( ((0 10) . 4)
                         ((10) . 4)))
      
-     (population . ( (6 7 8 9 10 11 12) . 4))
+     (population . ( ((6 7 8 9 10 11 12) . 4)))
      ))
 
 
-(defun uwp--get-tech-level-minimum (slot-symbol slot-value)
-  (let* ((slot-symbol slot-symbol)
-          (slot-value slot-value)
-          (matches (-filter (lambda (x)
-                              (member slot-value (car x)))
-                     (alist-get slot-symbol uwp--tech-level-minimums-list))))
-    (when matches
-      (cdar matches))))
+(defun uwp--get-tech-level-minimum (atmosphere hydrographics population)
+  (let ((f (lambda (slot-symbol slot-value)
+             (let* ((slot-symbol slot-symbol)
+                     (slot-value slot-value)
+                     (matches (-filter (lambda (x)
+                                         (member slot-value (car x)))
+                                (alist-get slot-symbol uwp--tech-level-minimums-list))))
+               (if matches
+                 (cdar matches)
+                 0)))))
 
-(uwp--get-tech-level-minimum 'atmosphere 11)
+    (max (funcall f 'atmosphere atmosphere)
+      (funcall f 'hydrographics hydrographics)
+      (funcall f 'population population))
+    ))
 
-
-
+(uwp--get-tech-level-minimum 11 7 8)
 
 (provide 'trav-alists)
 
