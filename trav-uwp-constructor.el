@@ -72,7 +72,7 @@
         0 (restrict 0 #xF
             (+ -7 government))))))
 
-(cl-defmethod uwp--calc-starport (starport-roll population)
+(defun uwp--calc-starport (starport-roll population)
   (cdr (assoc
          (restrict 2 #xB
            (+ population (- starport-roll 7)))
@@ -84,7 +84,7 @@
     (set-slot-value obj 'starport
       (uwp--calc-starport starport population))))
 
-(cl-defmethod uwp--calc-tech-level
+(defun uwp--calc-tech-level
   (tech-level-roll starport size atmosphere hydrographics population government)
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
           (get-mod (lambda (slot-symbol slot-value)
