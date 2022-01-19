@@ -80,7 +80,9 @@
     (set-slot-value obj 'law-level
       (if (= 0 population)
         0 (restrict 0 #xF
-            (+ -7 government))))))
+            (+ law-level
+              government
+              -7))))))
 
 (defun uwp--calc-starport (starport-roll population)
   "Calculate a UWP's starport score as per the Cepheus SRD's rules."
