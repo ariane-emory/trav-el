@@ -6,6 +6,7 @@
 ;; Dice functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; trav-roll.el ends here
 (defmacro roll (xdy)
   "Roll num side-sided dice and return the total."
   (let* ((parts (split-string (symbol-name xdy) "d"))
@@ -17,3 +18,5 @@
        total)))
 
 (provide 'trav-roll)
+
+;;; trav-roll.el ends here

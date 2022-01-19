@@ -1,3 +1,4 @@
+;;; trav-uwp-other-methods.el ends here
 ;; -*- lisp-indent-offset: 2; -*-
 ;; -*- fill-column: 60;-*-
 ;; -*- lexical-binding: t-*-
@@ -22,3 +23,5 @@
                          (slot-value obj slot-name)))))))))
 
 (provide 'trav-uwp-other-methods)
+
+;;; trav-uwp-other-methods.el ends here

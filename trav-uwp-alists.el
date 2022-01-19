@@ -182,5 +182,6 @@
                         ((10) . 4)))
      (population . ( ((6 7 8 9 10 11 12) . 4)))))
 
-(provide 'trav-alists)
+(provide 'trav-uwp-alists)
 
+;;; trav-uwp-alists.el ends here

@@ -46,9 +46,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (-each
-  '( trav-alists
-     trav-helpers
+  '( trav-helpers
      trav-roll
+     trav-uwp-alists
      trav-uwp-class
      trav-uwp-getters-and-describers
      trav-uwp-constructor
@@ -101,3 +101,4 @@
 ;; lisp-indent-offset: 2
 ;; fill-column: 60
 ;; End:
+

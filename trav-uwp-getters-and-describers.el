@@ -1,3 +1,4 @@
+;;; trav-uwp-getters-and-describers.el ends here
 ;; -*- lisp-indent-offset: 2; -*-
 ;; -*- fill-column: 60;-*-
 ;; -*- lexical-binding: t-*-
@@ -135,3 +136,5 @@
 (uwp--make-slot-describer tech-level)
 
 (provide 'trav-uwp-getters-and-describers)
+
+;;; trav-uwp-getters-and-setters.el ends here
