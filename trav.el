@@ -442,9 +442,8 @@
   (interactive)
   (setq u (parse-uwp (thing-at-point 'word 'no-properties)))
   (save-excursion
-    (insert
-      "\n"
-      (pretty-format u))))
+    (unless (looking-at "\s*$") (forward-word))
+    (insert ":\n" (pretty-format u))))
 
 (global-set-key (kbd "C-c C-u C-d") 'describe-uwp-at-point)
 (global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp-with-description)
