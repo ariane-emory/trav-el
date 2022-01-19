@@ -19,7 +19,8 @@
      trav-uwp-getters-and-describers
      trav-uwp-constructor
      trav-uwp-parse
-     trav-uwp-pretty-format)
+     trav-uwp-pretty-format
+     trav-uwp-other-methods)
   (lambda (feat)
     (setq features (remove feat features))
     (require feat)))

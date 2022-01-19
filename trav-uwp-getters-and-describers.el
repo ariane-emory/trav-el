@@ -62,21 +62,6 @@
                 ',description-alist))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Methods
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(cl-defmethod map-slots ((obj uwp) fun)
-  "Call fun on every slot of UWP in order."
-  (mapcar fun uwp--slot-names))
-
-(cl-defmethod as-code ((obj uwp))
-  "Print a UWP object."
-  (join-strings
-    (map-slots obj
-      (lambda (slot-name)
-        (t-format (slot-value obj slot-name))))))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Make the slot formatters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
