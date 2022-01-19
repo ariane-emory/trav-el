@@ -38,7 +38,10 @@
 (defun describe-uwp-at-point ()
   (interactive)
   (setq u (parse-uwp (thing-at-point 'word 'no-properties)))
-  (unless (looking-at "\s*$") (forward-word))
+  (end-of-line)
+  (newline)
+  ;; (unless (looking-at "\s*$")
+  ;;   (forward-word))
   (insert "\n" (pretty-format u)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
