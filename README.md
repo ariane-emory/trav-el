@@ -1,2 +1,2 @@
 # trav-el
-Traveller tools in emacs lisp
+Tools for Traveller-style RPGs in emacs lisp.

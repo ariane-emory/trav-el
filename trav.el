@@ -1,6 +1,9 @@
+;;; trav.el --- Useful tools for the a classic science fiction RPG.
 ;; -*- lisp-indent-offset: 2; -*-
 ;; -*- fill-column: 60;-*-
 ;; -*- lexical-binding: t-*-
+
+;; Copyright (c) 2022 Ariane Emory <ariange.emory@protonmail.com/
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
