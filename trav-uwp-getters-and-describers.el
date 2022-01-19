@@ -76,7 +76,7 @@
 
 (make-slot-formatter atmosphere
   (lambda (val)
-    (string-join `(,val "atmosphere."))))
+    (string-join `(,val "atmosphere.") " ")))
 
 (make-slot-formatter hydrographics
   (lambda (l)
