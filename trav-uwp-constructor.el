@@ -70,7 +70,8 @@
       (if (= 0 population)
         0 (restrict 0 #xF
             (+ government
-              population))))))
+              population
+              -7))))))
 
 (cl-defmethod uwp--init-law-level ((obj uwp))
   "Initialize a UWP's law level score as per the Cepheus SRD's rules."
