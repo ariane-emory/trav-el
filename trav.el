@@ -46,5 +46,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key (kbd "C-c C-u C-d") 'describe-uwp-at-point)
-(global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
+
+(defvar trav-mode-map
+  (let ((trav-mode-map (make-sparse-keymap)))
+    (define-key trav-mode-map
+      (kbd "C-c C-u C-d") 'describe-uwp-at-point)
+    (define-key trav-mode-map
+      (kbd "C-c C-u C-i") 'insert-new-uwp)
+    trav-mode-map)
+  "Keymap used in trav-mode.")
+
+(define-minor-mode trav-mode nil)
+
+;; (global-set-key (kbd "C-c C-u C-d") 'describe-uwp-at-point)
+;; (global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
