@@ -432,30 +432,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq u (uwp))
-(init u)
-(as-code u)
-(parse-uwp (as-code u))
-(as-code
-  (parse-uwp
-    (as-code (parse-uwp
-               (as-code (parse-uwp (as-code u)))))))
-(pretty-format (init (uwp)))
-
-(setq code "A9876543")
-(uwp--zip-numbers-with-slot-names
-  (uwp--code-to-number-list code))
-
-(setq u (parse-uwp code)) 
-(as-code u)
-(parse-uwp code) 
-(as-code (parse-uwp code)) 
-
 (defun insert-new-uwp ()
   (interactive)
   (insert (pretty-format (create-uwp))))
 
 (global-set-key (kbd "C-c C-u C-w C-p") 'insert-new-uwp)
-
-
-
