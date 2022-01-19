@@ -6,11 +6,11 @@
 ;; Name makers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun uwp-slot-description-alist-name (slot-name)
+(defun uwp--slot-description-alist-name (slot-name)
   "Generate the name of the description alist for a particular slot."
   (join-symbols (list 'uwp- slot-name 'descriptions 'alist)))
 
-(defun uwp-slot-action-name (action-name slot-name)
+(defun uwp--slot-action-name (action-name slot-name)
   "Generate a method name based on an action-name and a slot-name."
   (join-symbols (list action-name slot-name)))
 
@@ -18,10 +18,10 @@
 ;; Method makers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defmacro make-slot-formatter (slot-name fun)
+(defmacro uwp--make-slot-formatter (slot-name fun)
   "Generate a formatting function for a UWP's slot."
-  (let* ((fun-name (uwp-slot-action-name 'format slot-name))
-          (alist-name (uwp-slot-description-alist-name
+  (let* ((fun-name (uwp--slot-action-name 'format slot-name))
+          (alist-name (uwp--slot-description-alist-name
                         slot-name))
           (alist (symbol-value alist-name))
           (mapped-keys (map-keys alist))
@@ -31,22 +31,22 @@
        (funcall ,fun
          (alist-get (restrict ,mmin ,mmax obj) ',alist)))))
 
-(defmacro make-slot-getter (slot-name)
+(defmacro uwp--make-slot-getter (slot-name)
   "Generate a getter method for a UWP's slot."
-  (let ((action-name (uwp-slot-action-name 'get slot-name)))
+  (let ((action-name (uwp--slot-action-name 'get slot-name)))
     `(cl-defmethod ,action-name ((obj uwp))
        (slot-value obj ',slot-name))))
 
-(defmacro make-slot-describer (slot-name)
+(defmacro uwp--make-slot-describer (slot-name)
   "Generate a describer method for a UWP's slot."
   (let* ((format-slot-action-name
-           (uwp-slot-action-name  'format slot-name))
+           (uwp--slot-action-name  'format slot-name))
           (get-slot-action-name
-            (uwp-slot-action-name 'get slot-name))
+            (uwp--slot-action-name 'get slot-name))
           (describe-slot-action-name
-            (uwp-slot-action-name 'describe slot-name))
+            (uwp--slot-action-name 'describe slot-name))
           (description-alist
-            (symbol-value (uwp-slot-description-alist-name
+            (symbol-value (uwp--slot-description-alist-name
                             slot-name)))
           (mapped-keys (map-keys description-alist))
           (mmin
@@ -64,7 +64,7 @@
 ;; Make the slot formatters
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(make-slot-formatter size
+(uwp--make-slot-formatter size
   (lambda (pair)
     (concat
       "~"
@@ -73,11 +73,11 @@
       (number-to-string (cdr pair))
       " Gs gravity.")))
 
-(make-slot-formatter atmosphere
+(uwp--make-slot-formatter atmosphere
   (lambda (val)
     (string-join `(,val "atmosphere.") " ")))
 
-(make-slot-formatter hydrographics
+(uwp--make-slot-formatter hydrographics
   (lambda (l)
     (concat
       (nth 2 l)
@@ -87,7 +87,7 @@
       (number-to-string (nth 1 l))
       "% of surface covered by water.")))
 
-(make-slot-formatter population
+(uwp--make-slot-formatter population
   (lambda (l)
     (let ((numeric-population (cadr l)))
       (if (= 0 numeric-population)
@@ -98,40 +98,40 @@
           (number-to-string numeric-population)
           ").")))))
 
-(make-slot-formatter starport
+(uwp--make-slot-formatter starport
   (lambda (l)
     (if (equal "X" l)
       "No starport."
       (concat l "-class starport."))))
 
-(make-slot-formatter government
+(uwp--make-slot-formatter government
   (lambda (l) (concat l " government.")))
 
-(make-slot-formatter law-level
+(uwp--make-slot-formatter law-level
   (lambda (l) (concat l " law.")))
 
-(make-slot-formatter tech-level
+(uwp--make-slot-formatter tech-level
   (lambda (val) (concat "Tech Level " (number-to-string val) ".")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Make the slot getters/describers
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(make-slot-getter size)
-(make-slot-describer size)
-(make-slot-getter atmosphere)
-(make-slot-describer atmosphere)
-(make-slot-getter hydrographics)
-(make-slot-describer hydrographics)
-(make-slot-getter population)
-(make-slot-describer population)
-(make-slot-getter starport)
-(make-slot-describer starport)
-(make-slot-getter government)
-(make-slot-describer government)
-(make-slot-getter law-level)
-(make-slot-describer law-level)
-(make-slot-getter tech-level)
-(make-slot-describer tech-level)
+(uwp--make-slot-getter size)
+(uwp--make-slot-describer size)
+(uwp--make-slot-getter atmosphere)
+(uwp--make-slot-describer atmosphere)
+(uwp--make-slot-getter hydrographics)
+(uwp--make-slot-describer hydrographics)
+(uwp--make-slot-getter population)
+(uwp--make-slot-describer population)
+(uwp--make-slot-getter starport)
+(uwp--make-slot-describer starport)
+(uwp--make-slot-getter government)
+(uwp--make-slot-describer government)
+(uwp--make-slot-getter law-level)
+(uwp--make-slot-describer law-level)
+(uwp--make-slot-getter tech-level)
+(uwp--make-slot-describer tech-level)
 
 (provide 'trav-uwp-getters-and-describers)
