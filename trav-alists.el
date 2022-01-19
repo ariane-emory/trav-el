@@ -174,5 +174,17 @@
      (#xE . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government . -2)))
      (#xF . ((starport .  0) (size . 0) (atmosphere . 1) (hydrographics . 0) (population . 0) (government .  0)))))
 
+
+
+(setq uwp--tech-level-minimums-list
+  '( ((hydrographics is-in 0 10) . 4)
+     ((population is-at-least 6) . 4)
+     ((atmosphere is-in 4 7 9) . 5)
+     ((atmosphere is-in 0 1 2 3 10 11 12) . 7)
+     ((atmosphere is-in 13 14) . 7)
+     ((hydrographics is-in 10) . 4)
+     ))
+
+
 (provide 'trav-alists)
 
