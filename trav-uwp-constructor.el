@@ -84,6 +84,22 @@
     (set-slot-value obj 'starport
       (uwp--calc-starport starport population))))
 
+(defun uwp--get-tech-level-minimum (atmosphere hydrographics population)
+  (let ((f (lambda (slot-symbol slot-value)
+             (let* ((slot-symbol slot-symbol)
+                     (slot-value slot-value)
+                     (matches (-filter (lambda (x)
+                                         (member slot-value (car x)))
+                                (alist-get slot-symbol uwp--tech-level-minimums-list))))
+               (if matches
+                 (cdar matches)
+                 0)))))
+
+    (max (funcall f 'atmosphere atmosphere)
+      (funcall f 'hydrographics hydrographics)
+      (funcall f 'population population))
+    ))
+
 (defun uwp--calc-tech-level
   (tech-level-roll starport size atmosphere hydrographics population government)
   (let* ((tl-mods uwp--tech-level-modifiers-alist)
@@ -97,13 +113,9 @@
           (hydrographics-mod (funcall get-mod 'hydrographics hydrographics))
           (population-mod (funcall get-mod 'population population))
           (government-mod (funcall get-mod 'government government)))
-    (+ tech-level-roll starport-mod size-mod atmosphere-mod
-      hydrographics-mod population-mod government-mod)
-    ;; (list (+ tech-level-roll starport-mod size-mod atmosphere-mod
-    ;;         hydrographics-mod population-mod government-mod)
-    ;;   `(+ ,tech-level-roll ,starport-mod ,size-mod ,atmosphere-mod
-    ;;      ,hydrographics-mod ,population-mod ,government-mod))
-    ))
+    (max (+ tech-level-roll starport-mod size-mod atmosphere-mod
+           hydrographics-mod population-mod government-mod)
+      (uwp--get-tech-level-minimum atmosphere hydrographics population))))
 
 (cl-defmethod uwp--init-tech-level ((obj uwp))
   (with-slots (starport size atmosphere hydrographics population
