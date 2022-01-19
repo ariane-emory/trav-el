@@ -4,8 +4,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'cl-lib)
-(require 'seq)
 (require 'dash)
 (provide 'trav)
 
