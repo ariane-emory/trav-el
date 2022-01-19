@@ -86,16 +86,17 @@
 
 (cl-defmethod uwp--calc-tech-level
   (tech-level-roll starport size atmosphere)
-  (restrict 0 #xF
-    (+ tech-level-roll
-      (cond
-        ((= starport #xA) 6)
-        ((= starport #xB) 4)
-        ((= starport #xC) 2)
-        ((= starport #xD) 0)
-        ((= starport #xE) 0)
-        ((= starport #xE) -4)
-        (t 0)))))
+  (let* ((tl-mods uwp--tech-level-modifiers-alist)
+          (starport-mod (cdr (assoc 'starport
+                               (cdr (assoc starport
+                                      tl-mods)))))
+          (size-mod (cdr (assoc 'size
+                           (cdr (assoc size
+                                  tl-mods)))))
+          (atmosphere-mod (cdr (assoc 'atmosphere
+                                 (cdr (assoc atmosphere
+                                        tl-mods))))))
+    (+ tech-level-roll starport-mod size-mod atmosphere-mod)))
 
 (cl-defmethod uwp--init-tech-level ((obj uwp))
   (with-slots (starport size atmosphere hydrographics population
