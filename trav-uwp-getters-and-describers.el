@@ -28,9 +28,7 @@
           (mmin (apply #'min mapped-keys)))
     `(defun ,fun-name (obj)
        (funcall ,fun
-         (cdr (assoc (restrict ,mmin ,mmax obj) ',alist))))))
-(make-slot-formatter size #'identity)
-(format-size 8)
+         (alist-get (restrict ,mmin ,mmax obj) ',alist)))))
 
 (defmacro make-slot-getter (slot-name)
   (let ((action-name (uwp-slot-action-name 'get slot-name)))
