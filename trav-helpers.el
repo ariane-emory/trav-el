@@ -36,20 +36,9 @@
     (t number)))
 
 (defun join-symbols (symbols)
-  (intern (join-strings-with "-"
-            (mapcar #'symbol-name symbols))))
-
-(defun join-strings-with (separator strings)
-  "Join strings with separator."
-  (mapconcat 'identity strings separator))
-
-(defun join-with-spaces (&rest strings)
-  "Join strings with no separator."
-  (join-strings-with " " strings))
-
-(defun join-strings (strings)
-  "Join strings with no separator."
-  (join-strings-with "" strings))
+  (intern (string-join
+            (mapcar #'symbol-name symbols)
+            "-")))
 
 (defun t-format (num)
   (upcase (format "%x" num)))
