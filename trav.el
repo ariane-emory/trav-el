@@ -8,11 +8,12 @@
 (require 'dash)
 (provide 'trav)
 
-(setq features (remove 'trav-alists features))
-(setq features (remove 'trav-helpers features))
-
-(require 'trav-alists)
-(require 'trav-helpers)
+(-each
+  '( trav-alists
+     trav-helpers)
+  (lambda (feat)
+    (setq features (remove feat features))
+    (require feat)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Dice functions
