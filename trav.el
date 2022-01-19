@@ -26,6 +26,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun insert-new-uwp (&optional describe)
+  "Generate a new UWP and insert it at point."
   (interactive "P")
   (let ((u (create-uwp)))
     (insert (as-code u))
@@ -36,6 +37,7 @@
         "\n"))))
 
 (defun describe-uwp-at-point ()
+  "Insert a description of the UWP at point."
   (interactive)
   (setq u (parse-uwp (thing-at-point 'word 'no-properties)))
   (end-of-line)
@@ -59,6 +61,3 @@
 (define-minor-mode trav-mode
   "A mode with useful tools for Traveller and related RPGs."
   :lighter "✹")
-
-;; (global-set-key (kbd "C-c C-u C-d") 'describe-uwp-at-point)
-;; (global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
