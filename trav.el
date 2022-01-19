@@ -437,4 +437,7 @@
   (interactive)
   (insert (pretty-format (create-uwp))))
 
-(global-set-key (kbd "C-c C-u C-w C-p") 'insert-new-uwp)
+(global-set-key (kbd "C-c C-u C-i") 'insert-new-uwp)
+
+
+
