@@ -38,12 +38,12 @@
 
 ;;; Code:
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'dash)
 (provide 'trav)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (-each
   '( trav-helpers
@@ -60,7 +60,7 @@
     (setq features (remove feat features))
     (require feat)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun insert-new-uwp (&optional describe)
   "Generate a new UWP and insert it at point."
@@ -81,7 +81,7 @@
   (newline)
   (insert (pretty-format u)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar trav-mode-map
   (let ((trav-mode-map (make-sparse-keymap)))
@@ -92,10 +92,12 @@
     trav-mode-map)
   "Keymap used in trav-mode.")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (define-minor-mode trav-mode
   "A mode with useful tools for Traveller-like RPGs such as Cepheus Engine."
   :lighter " ✹")
-      
+
 ;;; trav.el ends here
 
 ;; Local Variables:
