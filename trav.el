@@ -96,7 +96,8 @@
 
 (define-minor-mode trav-mode
   "A mode with useful tools for Traveller-like RPGs such as Cepheus Engine."
-  :lighter " ✹")
+  :lighter " ✹"
+  (setq trav-mode-was-started 'yes))
 
 ;;; trav.el ends here
 
