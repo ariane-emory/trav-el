@@ -2,7 +2,7 @@
 
 ;; Copyright (c) 2022 Ariane Emory <ariane.emory@protonmail.com>
 
-;; Author: Ariane Emory <ariane.emory@protonmail.com;; URL: https://github.com/ariane-emory/trav-el
+;; Author: Ariane Emory <ariane.emory@protonmail.com; URL: https://github.com/ariane-emory/trav-el
 ;; Package-Requires: (dash)
 ;; Package-Version: 20220119
 ;; Keywords: games
