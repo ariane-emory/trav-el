@@ -100,9 +100,7 @@
   (setq trav-mode-was-started 'yes))
 
 ;;; trav.el ends here
-
 ;; Local Variables:
 ;; lisp-indent-offset: 2
-;; fill-column: 60
 ;; End:
 

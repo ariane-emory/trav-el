@@ -1,6 +1,4 @@
-;;; trav-uwp-pretty-format.el ends here
 ;; -*- lisp-indent-offset: 2; -*-
-;; -*- fill-column: 60;-*-
 ;; -*- lexical-binding: t-*-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

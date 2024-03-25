@@ -1,7 +1,5 @@
 ;; -*- lisp-indent-offset: 2; -*-
-;; -*- fill-column: 60;-*-
 ;; -*- lexical-binding: t-*-
-;;; trav-uwp-class.el ends here
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Class
